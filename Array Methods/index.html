@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Report</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Student Report</h1>
+
+        <input type="text" id="studentName" placeholder="Enter Student Name">
+
+        <input type="number" id="mark1" placeholder="Tamil Mark">
+        <input type="number" id="mark2" placeholder="English Mark">
+        <input type="number" id="mark3" placeholder="Mathematics Mark">
+        <input type="number" id="mark4" placeholder="Physics Mark">
+        <input type="number" id="mark5" placeholder="Chemistry Mark">
+        <input type="number" id="mark6" placeholder="Biology Mark">
+
+        <button onclick="generateReport()">Generate Report</button>
+        <div id="output"></div>
+
+    </div>
+
+    <script>
+
+        // Calculate Percentage
+        const calculatePercentage = (marks) => {
+            if (!Array.isArray(marks) || marks.length === 0) {
+                return 0;
+            }
+            const total = marks.reduce((sum, mark) => sum + mark, 0);
+            return (total / (marks.length * 100)) * 100;
+        };
+
+
+
+        // Assign Grade
+        const assignGrade = (percentage) => {
+            if (percentage >= 90) return "A+";
+            if (percentage >= 80) return "A";
+            if (percentage >= 70) return "B";
+            if (percentage >= 60) return "C";
+
+            return "F";
+        };
+
+
+        // Generate Report
+        const generateReport = () => {
+            // Get input values
+            const name = document.getElementById("studentName").value;
+
+            const mark1 = Number(document.getElementById("mark1").value);
+            const mark2 = Number(document.getElementById("mark2").value);
+            const mark3 = Number(document.getElementById("mark3").value);
+            const mark4 = Number(document.getElementById("mark4").value);
+            const mark5 = Number(document.getElementById("mark5").value);
+            const mark6 = Number(document.getElementById("mark6").value);
+
+
+
+            // Check name
+            if (name === "") {
+                alert("Please enter student name");
+                return;
+            }
+
+
+            // Check marks
+            const marks = [mark1, mark2, mark3, mark4, mark5, mark6];
+
+            if (marks.some(mark => mark < 0 || mark > 100)) {
+                alert("Marks should be between 0 and 100");
+                return;
+            }
+
+
+            // Calculate percentage
+            const percentage = calculatePercentage(marks);
+
+            // Calculate grade
+            const grade = assignGrade(percentage);
+
+
+            // Display output in browser
+            document.getElementById("output").innerHTML = `
+                <div class="student">
+                    <h2>Student Report</h2>
+                    <p><strong>Name:</strong> ${name}</p>
+                    <p><strong>Marks:</strong> ${marks.join(", ")} </p>
+                    <p><strong>Percentage:</strong> ${percentage.toFixed(2)}% </p>
+                    <p><strong>Grade:</strong> ${grade} </p>
+                </div>
+            `;
+        }
+
+    </script>
+
+</body>
+
+</html>
