@@ -20,7 +20,7 @@ export default function App() {
     <div className="App">
 
       <img
-        src="https://media.karousell.com/media/photos/products/2022/10/28/apple_iphone_14_pro_max_512gb__1666943808_3e7b42f0.jpg"
+        src="https://www.machines.com.my/cdn/shop/files/iPhone_17_Pro_Max_Cosmic_Orange_PDP_Image_Position_1_Cosmic_Orange_Colour__MY-EN_1024x1024.jpg?v=1757944834"
         alt="iPhone"
         style={{
           width: "100px",
